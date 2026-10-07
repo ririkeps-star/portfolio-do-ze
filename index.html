@@ -834,7 +834,7 @@ nav { background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(8px); -webkit
     </div>
 
     <!-- 02 -->
-    <div class="project-row fade-in d1" onclick="openModal('cs2')">
+    <div class="project-row fade-in d1" onclick="showView('case-consignado')" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ') showView('case-consignado')">
       <div class="project-num">02</div>
       <div class="project-main">
         <div class="project-title">Consignado <em>PicPay</em></div>
@@ -863,7 +863,7 @@ nav { background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(8px); -webkit
     </div>
 
     <!-- 03 -->
-    <div class="project-row fade-in d2" onclick="openModal('cs3')">
+    <div class="project-row fade-in d2" onclick="openLinkedInPDF()">
       <div class="project-num">03</div>
       <div class="project-main">
         <div class="project-title">Listas <em>LinkedIn</em></div>
@@ -1186,7 +1186,7 @@ nav { background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(8px); -webkit
 
     <div class="case-end">
       <a href="#work" onclick="navigateHomeTo('work'); return false;">← Voltar para trabalhos</a>
-      <a href="consignado.html">Próximo projeto →</a>
+      <a href="#" onclick="showView('case-consignado'); return false;">Próximo projeto →</a>
     </div>
   </div>
 
@@ -1205,11 +1205,11 @@ var obs = new IntersectionObserver(function(entries) {
 document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
 
 function showView(view) {
-  var home = document.getElementById('view-home');
-  var recarga = document.getElementById('view-case-recarga');
-  var isHome = view === 'home';
-  home.style.display = isHome ? '' : 'none';
-  recarga.style.display = isHome ? 'none' : '';
+  var views = ['view-home', 'view-case-recarga', 'view-case-consignado'];
+  views.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = (id === 'view-' + view) ? '' : 'none';
+  });
   window.scrollTo(0, 0);
   document.querySelectorAll('.fade-in:not(.visible)').forEach(function(el) { obs.observe(el); });
 }
@@ -1244,6 +1244,11 @@ function openModal(id) {
 function closeModal() {
   document.getElementById('modal-overlay').classList.remove('open');
   currentProject = null;
+}
+
+// LINKEDIN PDF
+function openLinkedInPDF() {
+  window.open('case-linkedin.pdf', '_blank');
 }
 
 function submitPassword() {
@@ -1325,5 +1330,346 @@ document.addEventListener('keydown', function(e) {
 })();
 
 </script>
+
+<div id="view-case-consignado" style="display:none">
+  <nav>
+    <a href="#" class="nav-name" onclick="showView('home'); window.scrollTo(0,0); return false;">Zé</a>
+    <ul class="nav-links">
+      <li><a href="#work" onclick="navigateHomeTo('work'); return false;">Trabalhos</a></li>
+      <li><a href="#about" onclick="navigateHomeTo('about'); return false;">Sobre</a></li>
+      <li><a href="#contact" onclick="navigateHomeTo('contact'); return false;">Contato</a></li>
+    </ul>
+  </nav>
+
+  <div class="case-main">
+    <a href="#work" class="back-link" onclick="navigateHomeTo('work'); return false;">&larr; Trabalhos</a>
+
+    <header class="case-hero">
+      <p class="eyebrow fade-in">PicPay &middot; Fintech</p>
+      <h1 class="case-title fade-in d1">Consignado <em>INSS</em></h1>
+      <p class="tagline fade-in d2">Redesenhar a jornada de aquisição de um empréstimo consignado para 60+ anos.</p>
+      <div class="meta-grid fade-in">
+        <div class="meta-item">
+          <span class="meta-label">Ano</span>
+          <span class="meta-value">2023&ndash;2024</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Duração</span>
+          <span class="meta-value">6 meses</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Ferramentas</span>
+          <span class="meta-value">Figma</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Categoria</span>
+          <span class="meta-value">Product Design, UX, Research</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTEXT -->
+    <section class="case-section" id="contexto">
+      <div class="section-heading fade-in">
+        <h2 class="section-title">Contexto</h2>
+        <div class="section-right">
+          <p class="section-copy">O PicPay &eacute; uma fintech brasileira que permite pagamentos, transfer&ecirc;ncias e compras via app, com recursos como cashback e QR code, al&eacute;m de produtos financeiros como cart&atilde;o de cr&eacute;dito, investimentos e empr&eacute;stimos.</p>
+          <p class="section-copy fade-in d1" style="margin-top: 24px;">Em julho de 2023, o PicPay comprou a fintech BX Blue, que j&aacute; tinha penetra&ccedil;&atilde;o no consignado mas ainda n&atilde;o tinha solu&ccedil;&otilde;es nativas para aplicativo. Durante o tombamento, apenas as cores foram adaptadas e a jornada de contrata&ccedil;&atilde;o seguiu a que estava em produ&ccedil;&atilde;o da BX Blue &mdash; uma webview embarcada.</p>
+          <p class="section-copy fade-in d1" style="margin-top: 20px; margin-bottom: 56px;">O PicPay decidiu estrategicamente oferecer empr&eacute;stimo consignado com o INSS como forma de atrair e fidelizar um p&uacute;blico que j&aacute; usava o app, mas n&atilde;o se interessava pelos produtos dispon&iacute;veis.</p>
+        </div>
+      </div>
+
+      <div class="results-grid fade-in d2" style="grid-template-columns: repeat(3, 1fr); margin-top: 64px; padding-bottom: 24px;">
+        <div class="result-point">
+          <div class="result-value">4,50M</div>
+          <div class="result-label">Clientes com empr&eacute;stimos PicPay / BX Blue</div>
+          <div class="result-sub">Estado antes da iniciativa &mdash; AGO/23.</div>
+        </div>
+        <div class="result-point">
+          <div class="result-value">28M</div>
+          <div class="result-label">MAU no PicPay</div>
+          <div class="result-sub">Base de usu&aacute;rios ativos mensais no per&iacute;odo.</div>
+        </div>
+        <div class="result-point">
+          <div class="result-value">&minus;3</div>
+          <div class="result-label">NPS do consignado</div>
+          <div class="result-sub">Satisfa&ccedil;&atilde;o abaixo de zero em AGO/23.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEMA -->
+    <section class="case-section" id="problema">
+      <div class="section-heading fade-in">
+        <h2 class="section-title">O Problema</h2>
+        <div class="section-right">
+          <p class="section-copy">A jornada herdada da BX Blue tinha passos excessivos, hierarquia de informa&ccedil;&atilde;o baixa e dados desnecess&aacute;rios sendo solicitados. O p&uacute;blico &mdash; aposentados do INSS, majoritariamente 60+ &mdash; n&atilde;o entendia a tela, tinha medo de golpe e sentia sobrecarga cognitiva.</p>
+          <p class="section-copy fade-in d1" style="margin-top: 24px; margin-bottom: 48px;">A iniciativa-chave do roadmap foi re-trabalhar a jornada de aquisi&ccedil;&atilde;o para entregar as informa&ccedil;&otilde;es certas, no momento certo.</p>
+        </div>
+      </div>
+
+      <div class="section-label fade-in d2" style="margin-top: 64px; margin-bottom: 24px;">Insights de usu&aacute;rios que viram uma oferta mas n&atilde;o contrataram</div>
+      <div class="quotes-grid fade-in d2">
+        <div class="quote-card"><span class="quote-index">01</span><p class="quote-text">&ldquo;Sinceramente, eu n&atilde;o entendi nada dessa tela.&rdquo;</p></div>
+        <div class="quote-card"><span class="quote-index">02</span><p class="quote-text">&ldquo;Ser&aacute; que &eacute; poss&iacute;vel editar o valor ou as parcelas?&rdquo;</p></div>
+        <div class="quote-card"><span class="quote-index">03</span><p class="quote-text">&ldquo;T&ocirc; com dificuldade de entender onde devo clicar.&rdquo;</p></div>
+        <div class="quote-card"><span class="quote-index">04</span><p class="quote-text">&ldquo;Falta transpar&ecirc;ncia, eu n&atilde;o contrataria por aqui de jeito nenhum.&rdquo;</p></div>
+        <div class="quote-card"><span class="quote-index">05</span><p class="quote-text">&ldquo;Fiquei com medo do dinheiro n&atilde;o cair, parece golpe.&rdquo;</p></div>
+        <div class="quote-card"><span class="quote-index">06</span><p class="quote-text">&ldquo;&Eacute; tanto n&uacute;mero, tanta coisa, que a cabe&ccedil;a at&eacute; d&oacute;i.&rdquo;</p></div>
+      </div>
+    </section>
+
+    <!-- PROCESSO -->
+    <section class="case-section" id="processo">
+      <div class="section-heading fade-in">
+        <h2 class="section-title">Processo</h2>
+        <p class="section-copy">Seis meses de trabalho em ciclos curtos, conectando descoberta, conceito e desenvolvimento para transformar uma jornada confusa em uma experi&ecirc;ncia clara e confi&aacute;vel.</p>
+      </div>
+
+      <div class="process-block fade-in">
+        <div class="phase-grid">
+          <div class="phase">
+            <div class="phase-number">01</div>
+            <h4 class="phase-name">Conceitua&ccedil;&atilde;o</h4>
+            <ul class="phase-list">
+              <li>Stakeholder Interview</li>
+              <li>Desk Research</li>
+              <li>Benchmark</li>
+            </ul>
+          </div>
+          <div class="phase">
+            <div class="phase-number">02</div>
+            <h4 class="phase-name">Desdobramento</h4>
+            <ul class="phase-list">
+              <li>Concepts de alta</li>
+              <li>Usability Test</li>
+              <li>Edge cases</li>
+              <li>Teste de conte&uacute;do</li>
+            </ul>
+          </div>
+          <div class="phase">
+            <div class="phase-number">03</div>
+            <h4 class="phase-name">Desenvolvimento</h4>
+            <ul class="phase-list">
+              <li>Product Libraries</li>
+              <li>Tracking Plan</li>
+              <li>QA de Design</li>
+              <li>A/B testing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-block fade-in d1">
+        <h3 class="subheading">Timeline</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">01/Jul</div>
+            <div class="timeline-title">Discover</div>
+            <div class="timeline-note">Kick off &amp; weekly check-ins</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">02/Ago</div>
+            <div class="timeline-title">Concepting</div>
+            <div class="timeline-note">Roadmapping &amp; technical planning</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">01/Set</div>
+            <div class="timeline-title">Users Testing</div>
+            <div class="timeline-note">Concept review &amp; testes</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">02/Out</div>
+            <div class="timeline-title">Developing</div>
+            <div class="timeline-note">Design QA &amp; handoff</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">02/Dez</div>
+            <div class="timeline-title">Release</div>
+            <div class="timeline-note">Release plan &amp; A/B testing</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENCHMARK -->
+    <section class="case-section" id="benchmark">
+      <div class="section-heading fade-in">
+        <h2 class="section-title">Benchmark</h2>
+        <div class="section-right">
+          <p class="section-copy">Avaliamos quatro concorrentes para entender padr&otilde;es de jornada, carga cognitiva e hierarquia de informa&ccedil;&atilde;o no consignado INSS.</p>
+          <p class="section-copy fade-in d1" style="margin-top: 24px; margin-bottom: 48px;">A oportunidade: criar uma jornada com poucos passos, informa&ccedil;&otilde;es claras, baixa carga cognitiva e confian&ccedil;a para as pessoas.</p>
+        </div>
+      </div>
+
+      <div class="quotes-grid fade-in d2" style="grid-template-columns: repeat(2, 1fr); margin-top: 64px;">
+        <div class="quote-card" style="min-height: auto;">
+          <span class="quote-index">Banco do Brasil</span>
+          <p class="quote-text" style="font-style: normal; font-size: 16px; font-family: 'Karla', sans-serif; color: #555; line-height: 1.7;">O mais ativo no consignado para servidores p&uacute;blicos, mas busca expandir no INSS. Apesar de menor market share no segmento, sua jornada no app tem textos dif&iacute;ceis e alta carga cognitiva.</p>
+        </div>
+        <div class="quote-card" style="min-height: auto;">
+          <span class="quote-index">Nubank</span>
+          <p class="quote-text" style="font-style: normal; font-size: 16px; font-family: 'Karla', sans-serif; color: #555; line-height: 1.7;">Recentemente entrou no mercado de consignado, mas ainda possui atua&ccedil;&atilde;o limitada. Tem uma boa experi&ecirc;ncia, com oportunidades de melhorias na l&oacute;gica de fluxos.</p>
+        </div>
+        <div class="quote-card" style="min-height: auto;">
+          <span class="quote-index">Ita&uacute;</span>
+          <p class="quote-text" style="font-style: normal; font-size: 16px; font-family: 'Karla', sans-serif; color: #555; line-height: 1.7;">N&atilde;o &eacute; um grande player no consignado INSS, com foco em outros produtos de cr&eacute;dito. A contrata&ccedil;&atilde;o no app &eacute; extensa e tem muitos passos que poderiam ser simplificados.</p>
+        </div>
+        <div class="quote-card" style="min-height: auto;">
+          <span class="quote-index">Banco Pan</span>
+          <p class="quote-text" style="font-style: normal; font-size: 16px; font-family: 'Karla', sans-serif; color: #555; line-height: 1.7;">Focado em consignado, &eacute; um dos principais players no INSS, com cerca de 20% de sua carteira dedicada ao segmento. H&aacute; pouca informa&ccedil;&atilde;o em tela &mdash; pra consultar taxa, &eacute; preciso procurar muito.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- USABILITY TEST -->
+    <section class="case-section" id="usability-test">
+      <div class="section-heading fade-in">
+        <h2 class="section-title">Teste de Usabilidade</h2>
+        <div class="section-right">
+          <p class="section-copy">Em apenas dois dias, realizamos uma bateria intensa de testes de usabilidade. Foram 12 pessoas que participaram de testes de conte&uacute;do e percep&ccedil;&atilde;o &mdash; usu&aacute;rios PicPay com mais de 60 anos que entraram na jornada, mas n&atilde;o contrataram.</p>
+          <p class="section-copy fade-in d1" style="margin-top: 24px; margin-bottom: 56px;">Esse esfor&ccedil;o focado foi essencial para entender como os usu&aacute;rios interagem com o produto, identificar &aacute;reas de melhoria e captar insights sobre a experi&ecirc;ncia e a compreens&atilde;o geral do conte&uacute;do.</p>
+        </div>
+      </div>
+
+      <div class="results-grid fade-in d2" style="grid-template-columns: repeat(3, 1fr); margin-top: 64px; padding-bottom: 24px;">
+        <div class="result-point">
+          <div class="result-value">12</div>
+          <div class="result-label">Participantes</div>
+          <div class="result-sub">Usu&aacute;rios PicPay 60+ que n&atilde;o contrataram.</div>
+        </div>
+        <div class="result-point">
+          <div class="result-value">2</div>
+          <div class="result-label">Dias de teste</div>
+          <div class="result-sub">Bateria intensa de conte&uacute;do e percep&ccedil;&atilde;o.</div>
+        </div>
+        <div class="result-point">
+          <div class="result-value">4</div>
+          <div class="result-label">Principais aprendados</div>
+          <div class="result-sub">Personaliza&ccedil;&atilde;o, terminologia, respiração e quebras.</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 64px;" class="fade-in d2">
+        <div class="section-label" style="margin-bottom: 24px;">Principais aprendizados</div>
+        <div class="quotes-grid" style="grid-template-columns: repeat(2, 1fr);">
+          <div class="quote-card" style="min-height: auto;">
+            <span class="quote-index">Personalização da oferta</span>
+            <p class="quote-text" style="font-style: normal; font-size: 16px; font-family: 'Karla', sans-serif; color: #555; line-height: 1.7;">Usamos &iacute;cones para representar a edi&ccedil;&atilde;o dos valores e parcelas, e o mesmo n&atilde;o foi 100% compreendido nos testes.</p>
+          </div>
+          <div class="quote-card" style="min-height: auto;">
+            <span class="quote-index">Universo Consignado INSS</span>
+            <p class="quote-text" style="font-style: normal; font-size: 16px; font-family: 'Karla', sans-serif; color: #555; line-height: 1.7;">Por ser um p&uacute;blico altamente espec&iacute;fico, termos que parecem complexos n&atilde;o exigem explica&ccedil;&atilde;o &mdash; &ldquo;margem livre&rdquo;, &ldquo;Dataprev&rdquo;, &ldquo;maci&ccedil;a&rdquo;.</p>
+          </div>
+          <div class="quote-card" style="min-height: auto;">
+            <span class="quote-index">Mais respiração</span>
+            <p class="quote-text" style="font-style: normal; font-size: 16px; font-family: 'Karla', sans-serif; color: #555; line-height: 1.7;">Por concentrar as informa&ccedil;&otilde;es, notamos a necessidade de usar um pouco mais de espa&ccedil;os vazios.</p>
+          </div>
+          <div class="quote-card" style="min-height: auto;">
+            <span class="quote-index">Atenção às quebras</span>
+            <p class="quote-text" style="font-style: normal; font-size: 16px; font-family: 'Karla', sans-serif; color: #555; line-height: 1.7;">Ao compartilhar a tela percebemos que alguns usu&aacute;rios estavam com uma configura&ccedil;&atilde;o que amplia os caracteres, e isso &ldquo;quebrou&rdquo; algumas telas do prot&oacute;tipo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUÇÃO -->
+    
+    <section class="case-section" id="video">
+      <div class="section-heading fade-in">
+        <h2 class="section-title">Jornada</h2>
+        <p class="section-copy">Veja a jornada completa de aquisição &mdash; do hub de empr&eacute;stimos &agrave; contrata&ccedil;&atilde;o.</p>
+      </div>
+      <div class="video-wrapper fade-in d1">
+        <div class="video-container" style="padding-bottom: 56.25%;">
+          <iframe src="jornada-consignado.html?v=20261007" title="Jornada de empréstimo consignado" frameborder="0" allowfullscreen style="background: #d6ece3;"></iframe>
+        </div>
+      </div>
+    </section>
+
+<section class="case-section" id="solucao">
+      <div class="section-heading fade-in">
+        <h2 class="section-title">Solução</h2>
+        <div class="section-right">
+          <p class="section-copy">Uma jornada de aquisi&ccedil;&atilde;o clara, pr&aacute;tica e confi&aacute;vel, que entrega as informa&ccedil;&otilde;es certas no momento certo.</p>
+          <p class="section-copy fade-in d1" style="margin-top: 24px; margin-bottom: 56px;">A tela de oferta traz as informa&ccedil;&otilde;es necess&aacute;rias para a tomada de decis&atilde;o, com hierarquia clara e storytelling objetivo que resulta no bot&atilde;o contratar. As telas de edi&ccedil;&atilde;o abrem a partir da oferta e focam exclusivamente na decis&atilde;o que o usu&aacute;rio quer tomar &mdash; ele n&atilde;o perde tempo e se sente confort&aacute;vel para testar valores at&eacute; encontrar a forma que cabe no bolso.</p>
+        </div>
+      </div>
+
+      
+      <div class="solution-media fade-in d2">
+        <figure class="screen-wide">
+          <img src="consignado-jornada.png" alt="Jornada completa de aquisição do consignado" loading="lazy">
+          <figcaption>Jornada completa &mdash; do hub de empr&eacute;stimos &agrave; contrata&ccedil;&atilde;o</figcaption>
+        </figure>
+        <div class="screen-grid">
+          <figure class="fade-in d1">
+            <img src="consignado-hero.png" alt="Telas de oferta, edi&ccedil;&atilde;o de valor e confirma&ccedil;&atilde;o do pedido" loading="lazy">
+            <figcaption>Tela de oferta, ajuste de valor e pedido concluido</figcaption>
+          </figure>
+          <figure class="fade-in d2">
+            <img src="consignado-hub.png" alt="Hub de empr&eacute;stimos e tela de navega&ccedil;&atilde;o" loading="lazy">
+            <figcaption>Hub de empr&eacute;stimos e descoberta de produtos</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section></section>
+
+    <!-- IMPACTO -->
+    <section class="case-section" id="impacto">
+      <div class="section-heading fade-in">
+        <h2 class="section-title">Impacto</h2>
+        <p class="section-copy">A nova jornada transformou m&eacute;tricas-chave do produto em menos de um ano. O NPS saltou de &minus;3 para +5, a base de clientes com consignado cresceu e a satisfa&ccedil;&atilde;o do p&uacute;blico 60+ melhorou significativamente.</p>
+      </div>
+
+      <div class="results-grid fade-in d1">
+        <div class="result-point">
+          <div class="result-value">+5</div>
+          <div class="result-label">NPS em JUL/24</div>
+          <div class="result-sub">De &minus;3 em AGO/23 para +5 em Jul/24 &mdash; uma virada de 8 pontos.</div>
+        </div>
+        <div class="result-point">
+          <div class="result-value">25K</div>
+          <div class="result-label">Clientes com Consignado PicPay</div>
+          <div class="result-sub">Base espec&iacute;fica de consignado ap&oacute;s o redesenho da jornada.</div>
+        </div>
+        <div class="result-point">
+          <div class="result-value">138M</div>
+          <div class="result-label">MAU no PicPay</div>
+          <div class="result-sub">Crescimento da base de usu&aacute;rios ativos mensais.</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 64px;" class="fade-in d2">
+        <div class="section-label" style="margin-bottom: 24px;">Destaques da solu&ccedil;&atilde;o</div>
+        <div class="quotes-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <div class="quote-card" style="min-height: auto;">
+            <span class="quote-index">Tela de oferta</span>
+            <p class="quote-text" style="font-style: normal; font-size: 15px; font-family: 'Karla', sans-serif; color: #555; line-height: 1.7;">Traz as informa&ccedil;&otilde;es necess&aacute;rias para tomada de decis&atilde;o, com hierarquia clara e storytelling objetivo que resulta no bot&atilde;o contratar.</p>
+          </div>
+          <div class="quote-card" style="min-height: auto;">
+            <span class="quote-index">Telas de edição</span>
+            <p class="quote-text" style="font-style: normal; font-size: 15px; font-family: 'Karla', sans-serif; color: #555; line-height: 1.7;">Abrem a partir da oferta e focam exclusivamente na decis&atilde;o que o usu&aacute;rio quer tomar &mdash; testar valores at&eacute; encontrar o que cabe no bolso.</p>
+          </div>
+          <div class="quote-card" style="min-height: auto;">
+            <span class="quote-index">Taxas e termos</span>
+            <p class="quote-text" style="font-style: normal; font-size: 15px; font-family: 'Karla', sans-serif; color: #555; line-height: 1.7;">Desafiadoras pela carga de informa&ccedil;&atilde;o, al&eacute;m de serem respons&aacute;veis pela seguran&ccedil;a jur&iacute;dica do PicPay e cumprir normativas do Bacen.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="case-end">
+      <a href="#work" onclick="navigateHomeTo('work'); return false;">&larr; Voltar para trabalhos</a>
+      <a href="#" onclick="showView('case-recarga'); return false;">Projeto anterior &rarr;</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Zé &mdash; Product Designer</div>
+    <div class="footer-right">2025</div>
+  </footer>
+</div>
+
 </body>
 </html>
